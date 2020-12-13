@@ -1,4 +1,4 @@
-@charset "UTF-8";body{height:100vh;width:100vw}.flex-center{height:100%;width:100%;display:flex;align-items:center;justify-content:center}.hide{display:none}.top-left{left:1em}.top-left,.top-right{position:absolute;top:1em}.top-right{right:1em}.prompt{min-width:50em}.little-gray{color:#777}
+@charset "UTF-8";body{height:100vh;width:100vw}.flex-center{height:100%;width:100%;display:flex;align-items:center;justify-content:center}.hide{display:none}.top-left{left:1em}.top-left,.top-right{position:absolute;top:1em}.top-right{right:1em}.prompt{min-width:50em}.little-gray{color:#777}.h1-checkbox{height:.48em;margin-left:.1em;opacity:.8;transform:scale(1.5)}
 /*!
  * Bootstrap v4.5.3 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
