@@ -86,7 +86,7 @@ gerrymandering
 pertinent
 reentance
 sage
-untrammeled
+trammeled
 prowess
 contrive
 sojourn
@@ -108,7 +108,6 @@ reconciliation
 elucidate
 expound
 dainty
-inconcievable
 countenance
 alleviate
 licentious
@@ -148,10 +147,9 @@ stave off
 panoply
 travesty
 reverence
-delinquent
 brandish
 obfuscate
-erronerous
+erroneous
 accrual
 enroaches
 morose
