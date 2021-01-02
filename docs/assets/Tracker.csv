@@ -1,7 +1,7 @@
 Meal;Info;kCal;Protein;Ratio;Category;Today;Acc. Kcal;Acc. Protein
 Max Original;;1100;25.0;2.3%;Out;;;
 Pizza;;1000;50.0;5.0%;Out;;;
-MakaronilÃ¥da;6 eggs, 210g sausage;880;47.5;5.4%;Classic;;;
+Makaronilåda;6 eggs, 210g sausage;880;47.5;5.4%;Classic;;;
 Nuggets and noodles;150g Nuggets;825;35.5;4.3%;Classic;;;
 Hotdogs;3x70 Sausage, 3x30 bread;805;42.5;5.3%;Classic;;;
 Tonfiskpasta;235g Mushroom soup, Worcestershire Sauce, Curry, Cherry;800;54.0;6.8%;Classic;;;
@@ -58,3 +58,4 @@ Mojito;4cl white rum, 2cl lime juice, 2cl simple syrup, mint;0;0;#DIV/0!;Cocktai
 Passoa sour;6cl passoa, 4cl lime juice, 1 egg white, 2cl simple syrup, ice;0;0;#DIV/0!;Cocktail;;;
 Cuba libre;6cl white rum, cola, lime;0;0;#DIV/0!;Cocktail;;;
 Vodka sour;5cl vodka, 3cl lime juice, 2cl simple syrup, 1 egg white, ice;0;0;#DIV/0!;Cocktail;;;
+Swedish Ostkaka;500g cottage cheese, 4 eggs, 3cl sugar, 5cl flour, 3dl cream, 1dl finely chopped nuts;600;30.0;5.0%;Classic;;;
