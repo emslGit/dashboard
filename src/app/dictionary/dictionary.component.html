@@ -1,0 +1,56 @@
+<app-time></app-time>
+<app-nav [pages]="['dashboard', 'habits']"></app-nav>
+
+<div [ngClass]="service.night ? 'night-mode' : ''" class="flex-center" class="dictionary flex-rows flex-center">
+
+  <div *ngIf="started && word.word" [ngClass]="service.night ? 'night-mode' : ''" class="flex-center flex-cols">
+    <h1>{{ word.word | capitalize }}</h1>
+    <input (keyup.enter)="getInput()" id="dict-box" [ngClass]="service.night ? 'night-mode' : ''" type="text" class="form-control" />
+  </div>
+
+  <div *ngIf="started && word.word" id="show-screen" (click)="show = !show" class="flex-center flex-cols">
+    <h2 *ngIf="!show">
+      Show answer
+    </h2>
+    <div *ngIf="show">
+      <div *ngIf="word.descriptions.length">
+        <h4>Description:</h4>
+        <ul>
+          <li *ngFor="let desc of word.descriptions.slice(0, 5)">{{ desc | capitalize }}</li>
+        </ul>
+      </div>
+      <div *ngIf="word.synonyms.length">
+        <h4>Synonyms:</h4>
+        <div class="flex-rows">
+          <ul>
+            <li *ngFor="let synonym of word.synonyms.slice(0, 12)">{{ synonym | capitalize }}</li>
+          </ul>
+          <ul>
+            <li *ngFor="let synonym of word.synonyms.slice(12, 24)">{{ synonym | capitalize }}</li>
+          </ul>
+          <ul>
+            <li *ngFor="let synonym of word.synonyms.slice(24, 36)">{{ synonym | capitalize }}</li>
+          </ul>
+          <ul>
+            <li *ngFor="let synonym of word.synonyms.slice(36, 48)">{{ synonym | capitalize }}</li>
+          </ul>
+          <ul>
+            <li *ngFor="let synonym of word.synonyms.slice(48, 60)">{{ synonym | capitalize }}</li>
+          </ul>
+        </div>
+      </div>
+      <div *ngIf="word.usages.length">
+        <h4>Usages:</h4>
+        <ul>
+          <li *ngFor="let usage of word.usages.slice(0, 5)">{{ usage | capitalize }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!started" id="start-screen" (click)="started = !started" class="flex-center">
+    <h1 [ngClass]="service.night ? 'night-mode' : ''">
+      Start
+    </h1>
+  </div>
+</div>

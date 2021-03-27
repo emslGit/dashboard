@@ -1,0 +1,10 @@
+<app-time></app-time>
+<div [ngClass]="service.night ? 'night-mode' : ''" class="flex-center">
+  <div>
+    <h1 [ngClass]="service.night ? 'night-mode' : ''">Yesterday, this happened:</h1>
+    <input class="form-control prompt" #box (keyup.enter)="onEnter(box.value)">
+  </div>
+  <button [ngClass]="service.night ? 'btn-dark' : 'btn-light'" (click)="onSkip()" type="button" class="bot-right btn btn-light btn-sm">
+    Skip
+  </button>
+</div>

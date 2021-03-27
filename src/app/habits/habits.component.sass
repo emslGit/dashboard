@@ -1,0 +1,88 @@
+@import 'src/assets/colors'
+
+div.wrapper
+  display: grid
+  height: 100%
+  width: 100%
+  padding: 4em
+  grid-template-columns: 1fr 3fr
+  >div
+    border: 1px solid $grey
+    border-radius: 5px
+    padding: 1.6em
+    >h5
+      height: 1.2em
+      margin-top: -0.5em
+    >textarea
+      height: 87%
+  >div:first-of-type
+    grid-area: 1 / 1
+  >div:nth-of-type(2)
+    grid-area: 2 / 1
+  >div:nth-of-type(3)
+    grid-area: 3 / 1
+    align-items: center
+    >div.flex-rows
+      margin-top: 1em
+      width: 100%
+      flex-wrap: wrap
+  >div:nth-of-type(4)
+    padding: 2em 4em 4em 4em
+    grid-area: 1 / 2
+    grid-row: span 3
+    h5
+      text-align: center
+      margin-bottom: 2em
+    >div.flex-rows
+      >div:first-of-type
+        display: flex
+        align-items: center
+        justify-content: center
+        flex: 3
+      >div:last-of-type
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 20px
+        .close
+          margin-top: -5px
+
+textarea
+  width: 100%
+  height: 100%
+  resize: none
+
+.date-picker
+  display: flex
+  justify-content: center
+  width: 14%
+
+.habit-button
+  margin: 10px 0
+  height: 27px
+  width: 27px
+  border: 1px solid grey
+  text-align: center
+  cursor: pointer
+  user-select: none
+
+.cycle-buttons
+  display: flex
+  justify-content: center
+
+.date-section
+  flex: 1
+  display: flex
+  align-items: center
+  justify-content: center
+  .habit-button
+    font-size: 23px
+    line-height: 20px
+
+.selected
+  background: $bright
+  border: None
+
+.bot
+  button
+    margin: 0 0.5em

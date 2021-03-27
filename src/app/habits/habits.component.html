@@ -1,0 +1,68 @@
+<app-nav [pages]="['dashboard', 'dictionary']"></app-nav>
+
+<div [ngClass]="service.night ? 'night-mode' : ''" class="wrapper">
+  <div>
+    <h5 [ngClass]="service.night ? 'night-mode' : ''">Failure notes:</h5>
+    <textarea id="failures" placeholder="Date, habit, reason." (keyup)="textChanged($event)" [textContent]="failures" [ngClass]="service.night ? 'night-mode' : ''" spellcheck="false"></textarea>
+  </div>
+
+  <div>
+    <h5 [ngClass]="service.night ? 'night-mode' : ''">Cycle Review:</h5>
+    <textarea id="cycle" placeholder="What did you enjoy the most? What did you find difficult? What did you find the most meaningful? (why)" (keyup)="textChanged($event)" [textContent]="cycle" [ngClass]="service.night ? 'night-mode' : ''" spellcheck="false"></textarea>
+  </div>
+
+  <div [ngClass]="service.night ? 'night-mode' : ''">
+    <h5 [ngClass]="service.night ? 'night-mode' : ''">New Habit:</h5>
+    <input *ngIf="dateRange" (keyup.enter)="addHabit()" id="habitbox" [ngClass]="service.night ? 'night-mode' : ''" type="text" class="form-control" />
+    <div class="flex-rows">
+      <div *ngFor="let d of dateRange, let i = index" class="date-picker">
+        <div *ngIf="i < 7" class="date-picker" [ngClass]="service.night ? 'night-mode' : ''">{{DOW[d.getDay()]}}</div>
+      </div>
+      <div *ngFor="let d of dateRange, let i = index" class="date-picker">
+        <div id="date-picker-{{i}}" [ngClass]="service.night ? 'night-mode' : ''" (click)="pickDate(i)" class="selected habit-button">
+          {{d.getDate()}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="today && dateRange && dateRange.length" class="flex-cols">
+    <h5>
+      {{startDate.getDate()}}/{{startDate.getMonth() + 1}}/{{startDate.getFullYear()}} -
+      {{endDate.getDate()}}/{{endDate.getMonth() + 1}}/{{endDate.getFullYear()}}
+    </h5>
+    <div class="flex-rows">
+      <div></div>
+      <div *ngFor="let d of dateRange, let x = index" [ngClass]="service.night ? 'night-mode' : ''" class="date-section">
+        <span [ngStyle]="{'color': (d <= today) ? 'tomato' : ''}">
+          <b>{{DOW[d.getDay()]}}<br>
+            {{d.getDate()}}</b>
+        </span>
+      </div>
+      <div></div>
+    </div>
+    <div *ngFor="let h of habits, let y = index" class="flex-rows">
+      <div [ngClass]="service.night ? 'night-mode' : ''">{{h.name}}</div>
+      <div *ngFor="let d of dateRange, let x = index" [ngClass]="service.night ? 'night-mode' : ''" class="date-section">
+        <div *ngIf="h.days[x]" [ngClass]="service.night ? 'night-mode' : ''" (click)="changeStatus(x, y)" class="habit-button">
+          {{h.status[x] | status}}
+        </div>
+      </div>
+      <div>
+        <button (click)="removeHabit(y)" [ngClass]="service.night ? 'night-mode' : ''" type="button" class="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!dateRange.length" class="flex-cols">
+  </div>
+</div>
+<div class="bot">
+  <button [ngClass]="service.night ? 'btn-dark' : 'btn-light'" (click)="back()" type="button" class="btn btn-light btn-sm">
+    < Back
+  </button>
+  <button [ngClass]="service.night ? 'btn-dark' : 'btn-light'" (click)="next()" type="button" class="btn btn-light btn-sm">
+    Next >
+  </button>
+</div>

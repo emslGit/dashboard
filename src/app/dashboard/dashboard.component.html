@@ -1,0 +1,112 @@
+<app-time></app-time>
+<app-nav [pages]="['dictionary', 'habits']"></app-nav>
+
+<div *ngIf="goal" [ngClass]="service.night ? 'night-mode' : ''" class="flex-center">
+  <h4><span class="heading">Yesterday:</span> {{yesterday}}</h4>
+  <h1>
+    <span class="heading">Today:</span> {{goal}}
+    <input (change)="getChecked()" [checked]="checked" type="checkbox" class="h1-checkbox" >
+  </h1>
+  <div class="carousel-custom">
+
+    <!--Meal tracking tab-->
+    <div id="meals-tab-1" *ngIf="carousel == 0" [ngClass]="service.night ? 'night-mode' : ''" class="carousel-custom-item">
+      <h2>Hungry?</h2>
+      <label for="typeahead-prevent-manual-entry">Search for a meal:</label>
+      <input id="typeahead-prevent-manual-entry" type="text" class="form-control"
+             (keyup.enter)="addMeal(model)"
+             [ngClass]="service.night ? 'night-mode' : ''"
+             [(ngModel)]="model"
+             [ngbTypeahead]="search"
+             [inputFormatter]="formatter"
+             [resultFormatter]="formatter"
+             [editable]='false'/>
+      <hr>
+      <button (click)="more = !more" [ngClass]="service.night ? 'btn-dark' : 'btn-light'" type="button" class="btn btn-light btn-sm">More</button>
+      <div *ngIf="more" [ngClass]="service.night ? 'night-mode' : ''" class="meals-more">
+        <h5>Protein: {{getProtein() | number:'1.1'}}g</h5>
+        <h5>kCal: {{getkCal()}}</h5>
+      </div>
+    </div>
+    <div id="meals-tab-2" *ngIf="carousel == 0" [ngClass]="service.night ? 'night-mode' : ''" class="carousel-custom-item">
+      <div class="list-item" *ngFor="let meal of meals; let i = index">
+        <h5 [ngClass]="service.night ? 'night-mode' : ''">{{meal['Meal']}} <span *ngIf="more">({{meal['Category']}}, {{meal['kCal']}}kCal, {{meal['Protein'] | number:'1.1'}}g)</span></h5>
+        <div>
+          <div id="meal_{{i}}" class="info-div hide">{{meal['Info']}}</div>
+          <button (mouseover)="toggleInfo(i, true)" (mouseout)="toggleInfo(i, false)" [ngClass]="service.night ? 'night-mode' : ''" type="button" class="close">
+            <span aria-hidden="true">i</span>
+          </button>
+          <button (click)="removeMeal(i)" [ngClass]="service.night ? 'night-mode' : ''" type="button" class="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!--Pomodoro tab-->
+    <div id="pom-tab" *ngIf="carousel == 1" [ngClass]="service.night ? 'night-mode' : ''" class="carousel-custom-item">
+      <h2><span>Pomodoro:</span> {{pomodoroGoal}}</h2>
+      <div *ngIf="!pomodoroGoal">
+        <input #pombox id="pombox" [ngClass]="service.night ? 'night-mode' : ''" class="form-control prompt">
+        <div>
+          <button (click)="onPomodoroEnter(pombox.value, 25)" [ngClass]="service.night ? 'btn-dark' : 'btn-light'" type="button" class="pomodoro-button btn btn-lg">
+            25:00
+          </button>
+          <button (click)="onPomodoroEnter(pombox.value, 35)" [ngClass]="service.night ? 'btn-dark' : 'btn-light'" type="button" class="pomodoro-button btn btn-lg">
+            35:00
+          </button>
+          <button (click)="onPomodoroEnter(pombox.value, 45)" [ngClass]="service.night ? 'btn-dark' : 'btn-light'" type="button" class="pomodoro-button btn btn-lg">
+            45:00
+          </button>
+        </div>
+      </div>
+      <div *ngIf="pomodoroGoal" class="flex-center">
+        <h1 [ngClass]="service.night ? 'night-mode' : ''" class="gargantuan-heading">{{ pomodoroTime | minuteSeconds }}</h1>
+      </div>
+    </div>
+
+    <!--Note taking tab-->
+    <div id="notes-tab" *ngIf="carousel == 2" [ngClass]="service.night ? 'night-mode' : ''" class="carousel-custom-item">
+      <div class="flex-rows">
+        <button (click)="downloadPDF()" [ngClass]="service.night ? 'btn-dark' : 'btn-light'" type="button" class="btn btn-sm">PDF</button>
+        <h2 [ngClass]="service.night ? 'night-mode' : ''">Notes:</h2>
+      </div>
+      <div class="form-group notes">
+        <quill-editor spellcheck="false" id="quill_{{i}}"
+                      *ngFor="let i of [0, 1]"
+                      [placeholder]="''"
+                      (onContentChanged)="notesChanged($event, i)"
+                      [ngClass]="service.night ? 'night-mode' : ''"
+                      [ngModel]="notes[i]"
+                      [modules]="modules[i]">
+        </quill-editor>
+      </div>
+    </div>
+
+    <!--Agenda tab-->
+    <div id="todo-tab-1" *ngIf="carousel == 3" [ngClass]="service.night ? 'night-mode' : ''" class="carousel-custom-item">
+      <h2>Agenda</h2>
+      <br>
+      <input (keyup.enter)="addTodo()" id="todobox" [ngClass]="service.night ? 'night-mode' : ''" type="text" class="form-control" />
+    </div>
+    <div id="todo-tab-2" *ngIf="carousel == 3" [ngClass]="service.night ? 'night-mode' : ''" class="carousel-custom-item">
+      <div class="list-item" *ngFor="let todo of todos; let i = index">
+        <div>
+          <input id="todo_check_{{i}}" (change)="todoChecked(i)" [checked]="todosStatus[i]" type="checkbox" class="h5-checkbox">
+          <h5 [ngClass]="service.night ? 'night-mode' : ''">{{todo}}</h5>
+        </div>
+        <div>
+          <button (click)="removeTodo(i)" [ngClass]="service.night ? 'night-mode' : ''" type="button" class="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div>
+    <button (click)="moveCarousel(-1)" [ngClass]="service.night ? 'btn-dark' : 'btn-light'" type="button" class="carousel-custom-button btn btn-sm">< Back</button>
+    <button (click)="moveCarousel(1)" [ngClass]="service.night ? 'btn-dark' : 'btn-light'" type="button" class="carousel-custom-button btn btn-sm">Next ></button>
+  </div>
+  <button (click)="restart()" [ngClass]="service.night ? 'btn-dark' : 'btn-light'" type="button" class="bot-right btn btn-sm">Restart</button>
+</div>

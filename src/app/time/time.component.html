@@ -1,0 +1,4 @@
+<h5 [ngClass]="service.night ? 'night-mode' : ''" class="top-left">
+  {{service.time | date: 'EEE d MMM' }}<br>
+  {{service.time | date: 'HH:mm:ss' }}<br>
+</h5>

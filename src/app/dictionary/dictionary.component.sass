@@ -1,0 +1,35 @@
+@import 'src/assets/colors'
+
+div.dictionary
+  >div
+    flex: 1
+    &:first-of-type
+      h1
+        margin-bottom: 0.5em
+      >div:nth-of-type(2)
+        display: flex
+        justify-content: flex-end
+        width: 100%
+
+#start-screen
+  h1
+    cursor: pointer
+
+#show-screen
+  background: $brightest
+  h2
+    cursor: pointer
+  h4
+    margin-top: 1.5em
+  >div
+    width: 80%
+    height: 90%
+
+#dict-box
+  width: 35%
+
+.night-mode
+  #show-screen
+    h2, h4, li
+      color: $off-white
+    background: $darker

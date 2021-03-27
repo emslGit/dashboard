@@ -1,0 +1,26 @@
+<nav role="navigation" [ngClass]="service.night ? 'night-mode' : ''">
+  <div id="menuToggle" class="top-right">
+    <input type="checkbox"/>
+    <span></span>
+    <span></span>
+    <span></span>
+    <ul id="menu">
+      <a *ngFor="let page of pages" (click)="navigate(urls[page])"><li>{{ page | capitalize}}</li></a>
+      <a href="https://todoist.com/app/" target="_blank"><li>Todoist</li></a>
+      <div class="bot-right">
+        <div id="user-mail">
+          {{service.user.attributes.email}}
+        </div>
+        <div>
+          <button (click)="service.loadData()" type="button" class="btn btn-dark btn-sm">Load</button>
+          <button (click)="service.saveData()" type="button" class="btn btn-dark btn-sm">Save</button>
+          <button (click)="service.resetCookies()" type="button" class="btn btn-dark btn-sm">Reset</button>
+          <button (click)="toggleNightMode()" type="button" class="btn btn-dark btn-sm">Night</button>
+        </div>
+        <div>
+          <amplify-sign-out></amplify-sign-out>
+        </div>
+      </div>
+    </ul>
+  </div>
+</nav>

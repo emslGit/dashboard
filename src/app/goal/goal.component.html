@@ -1,0 +1,7 @@
+<app-time></app-time>
+<div [ngClass]="service.night ? 'night-mode' : ''" class="flex-center">
+  <div>
+    <h1 [ngClass]="service.night ? 'night-mode' : ''">My focus for today is:</h1>
+    <input class="form-control prompt" #box (keyup.enter)="onEnter(box.value)">
+  </div>
+</div>

@@ -1,0 +1,82 @@
+@import 'src/assets/colors'
+
+h1
+  height: 2.5em
+
+div.flex-center
+  flex-direction: column
+
+div.carousel-custom
+  display: flex
+  height: 50%
+  width: 65%
+  flex-direction: row
+  align-items: center
+
+div.carousel-custom-item
+  border: 1px solid $grey
+  border-radius: 5px
+  padding: 2em
+  height: 100%
+  width: 100% !important
+  &:nth-of-type(1), &:nth-of-type(5)
+    flex: 2
+  &:nth-of-type(2), &:nth-of-type(6)
+    flex: 5
+
+div.list-item
+  display: flex
+  justify-content: space-between
+  align-items: baseline
+  flex: 1
+  >div
+    display: flex
+    position: relative
+
+div.info-div
+  border: 1px solid $bright
+  right: 5em
+  bottom: 0
+  min-width: 10em
+  background: white
+  position: absolute
+  padding: 0.25em 0.5em
+
+div.meals-more
+  margin-top: 1em
+
+div.notes
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 100%
+  padding: 0.5em 0 6em 0
+  quill-editor
+    height: 100%
+    margin-right: 0.25em
+    &:first-of-type
+      width: 66% !important
+      flex: 2
+    &:nth-of-type(2)
+      width: 33% !important
+      flex: 1
+
+div.nav.top-left
+  >a
+    width: 4.5em
+    margin-top: 5px
+
+.flex-rows
+  align-items: center
+  >button
+    margin-right: 5px
+
+button.close
+  width: 1.5em
+
+button.pomodoro-button
+  margin: 1.25em 1.25em 0 0
+
+button.carousel-custom-button
+  margin: 1em 5px 0 5px
+  width: 6em
